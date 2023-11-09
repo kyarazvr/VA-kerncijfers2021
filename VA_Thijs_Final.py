@@ -118,22 +118,6 @@ def load_data():
 
     return gdf, CBS2021, gemeente_data2021, buurten_data2021, amsterdam_data2021, amsterdam_e_mvr,amsterdam_e_mvr_1, amsterdam_g_mvr, amsterdam_g_mvr_1
 
-@st.cache_data
-def prepare_geojson(CBS2021):
-    # Filter en converteer het DataFrame voor elk regio type naar GeoJSON
-    gemeente_gdf = CBS2021[CBS2021['SoortRegio_2'] == 'Gemeente']
-    gemeente_geo_json = gemeente_gdf.to_json()
-    
-    wijk_gdf = CBS2021[CBS2021['SoortRegio_2'] == 'Wijk']
-    wijk_geo_json = wijk_gdf.to_json()
-    
-    buurt_gdf = CBS2021[CBS2021['SoortRegio_2'] == 'Buurt']
-    buurt_geo_json = buurt_gdf.to_json()
-
-    #gemeente_geo_json, wijk_geo_json, buurt_geo_json = prepare_geojson(CBS2021)
-    
-    return gemeente_geo_json, wijk_geo_json, buurt_geo_json
-
 
 @st.cache_data
 def get_geojson_data(url):
@@ -145,6 +129,16 @@ def get_geojson_data(url):
 
 gdf, CBS2021, gemeente_data2021, buurten_data2021, amsterdam_data2021, amsterdam_e_mvr,amsterdam_e_mvr_1, amsterdam_g_mvr, amsterdam_g_mvr_1 = load_data()
 geojson_data = get_geojson_data("https://api.data.amsterdam.nl/v1/aardgasvrijezones/buurt/?_format=geojson")
+
+# Filter en converteer het DataFrame voor elk regio type naar GeoJSON
+gemeente_gdf = CBS2021[CBS2021['SoortRegio_2'] == 'Gemeente']
+gemeente_geo_json = gemeente_gdf.to_json()
+
+wijk_gdf = CBS2021[CBS2021['SoortRegio_2'] == 'Wijk']
+wijk_geo_json = wijk_gdf.to_json()
+
+buurt_gdf = CBS2021[CBS2021['SoortRegio_2'] == 'Buurt']
+buurt_geo_json = buurt_gdf.to_json()
 
 Ams_gdf = gpd.GeoDataFrame.from_features(geojson_data['features'])
 Ams_gdf['centroid'] = Ams_gdf['geometry'].centroid
