@@ -3,7 +3,7 @@
 
 # In[ ]:
 
-
+pip install cbsodata
 #pip install streamlit-folium
 
 import requests
