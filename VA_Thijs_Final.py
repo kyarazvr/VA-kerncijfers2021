@@ -171,7 +171,7 @@ Ams_gdf = Ams_gdf[Ams_gdf['toelichting'].str.contains('All electric:|Al \(bijna\
 page = st.sidebar.selectbox("Kies een Pagina",['Gasverbruik Analyse', 'Elektriciteitsverbruik Analyse'])
 st.sidebar.write("Databeschrijving:")
 st.sidebar.write(""" 'Kerncijfers over demografische en sociaal-economische kenmerken
-                  Uitgesplitst naar gemeenten, wijken en buurten""")
+                  Uitgesplitst naar gemeenten, wijken en buurten' """)
 st.sidebar.link_button("CBS, 2021", 'https://opendata.cbs.nl/statline/portal.html?_la=nl&_catalog=CBS&tableId=85039NED&_theme=237')
 
 if page == 'Gasverbruik Analyse':
