@@ -146,7 +146,7 @@ def get_geojson_data(url):
     else:
         raise Exception(f"Fout bij het ophalen van de data: {response.status_code}")
 
-gdf, CBS2021, gemeente_data2021, buurten_data2021, amsterdam_data2021, amsterdam_e_mvr,amsterdam_e_mvr_1, amsterdam_g_mvr, amsterdam_g_mvr_1 = load_data()
+CBS2021, gemeente_data2021, buurten_data2021, amsterdam_data2021, amsterdam_e_mvr,amsterdam_e_mvr_1, amsterdam_g_mvr, amsterdam_g_mvr_1 = load_data()
 geojson_data = get_geojson_data("https://api.data.amsterdam.nl/v1/aardgasvrijezones/buurt/?_format=geojson")
 
 # Filter en converteer het DataFrame voor elk regio type naar GeoJSON
