@@ -35,11 +35,11 @@ from streamlit_folium import st_folium
 #Streamlit data laden
 @st.cache_data
 def load_data():
-    gdf = gpd.read_file('cbsgebiedsindelingen2021.gpkg', layer='gemeente_gegeneraliseerd_2021')
-    gdf2 = gpd.read_file('cbsgebiedsindelingen2021.gpkg', layer='buurt_gegeneraliseerd_2021')
-    gdf3 = gpd.read_file('cbsgebiedsindelingen2021.gpkg', layer='wijk_gegeneraliseerd_2021')
-    gdf = pd.concat([gdf, gdf2, gdf3], ignore_index=True)
-    gdf = gdf.to_crs(epsg=4326)
+    # gdf = gpd.read_file('cbsgebiedsindelingen2021.gpkg', layer='gemeente_gegeneraliseerd_2021')
+    # gdf2 = gpd.read_file('cbsgebiedsindelingen2021.gpkg', layer='buurt_gegeneraliseerd_2021')
+    # gdf3 = gpd.read_file('cbsgebiedsindelingen2021.gpkg', layer='wijk_gegeneraliseerd_2021')
+    # gdf = pd.concat([gdf, gdf2, gdf3], ignore_index=True)
+    # gdf = gdf.to_crs(epsg=4326)
 
     CBS2021 = pd.DataFrame(cbsodata.get_data('85039NED'))
     CBS2021 = CBS2021[CBS2021['SoortRegio_2'] != 'Land']
@@ -120,7 +120,7 @@ def load_data():
     geo_df_crs = {'init' : 'epsg:4326'}
     CBS2021 = gpd.GeoDataFrame(CBS2021, crs = geo_df_crs, geometry = CBS2021.geometry)
 
-    return gdf, CBS2021, gemeente_data2021, buurten_data2021, amsterdam_data2021, amsterdam_e_mvr,amsterdam_e_mvr_1, amsterdam_g_mvr, amsterdam_g_mvr_1
+    return CBS2021, gemeente_data2021, buurten_data2021, amsterdam_data2021, amsterdam_e_mvr,amsterdam_e_mvr_1, amsterdam_g_mvr, amsterdam_g_mvr_1
 
 # @st.cache_data
 # def prepare_geojson(CBS2021):
