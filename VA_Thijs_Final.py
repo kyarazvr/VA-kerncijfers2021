@@ -116,9 +116,9 @@ def load_data():
     amsterdam_g_mvr = pd.melt(amsterdam_g, id_vars=id_vars, value_vars=value_vars, var_name='Type_woning', value_name='Count')
     amsterdam_g_mvr_1 = amsterdam_g_mvr.dropna()
 
-    CBS2021 = CBS2021.merge(gdf, left_on='Codering_3', right_on='statcode', how='left')
-    geo_df_crs = {'init' : 'epsg:4326'}
-    CBS2021 = gpd.GeoDataFrame(CBS2021, crs = geo_df_crs, geometry = CBS2021.geometry)
+    # CBS2021 = CBS2021.merge(gdf, left_on='Codering_3', right_on='statcode', how='left')
+    # geo_df_crs = {'init' : 'epsg:4326'}
+    # CBS2021 = gpd.GeoDataFrame(CBS2021, crs = geo_df_crs, geometry = CBS2021.geometry)
 
     return CBS2021, gemeente_data2021, buurten_data2021, amsterdam_data2021, amsterdam_e_mvr,amsterdam_e_mvr_1, amsterdam_g_mvr, amsterdam_g_mvr_1
 
