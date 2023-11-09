@@ -67,7 +67,8 @@ def load_data():
                                 'VrijstaandeWoning_52',
                                 'Huurwoning_53',
                                 'EigenWoning_54',
-                                 'HuishoudensTotaal_28']]
+                                 'HuishoudensTotaal_28',
+                                'GemiddeldeHuishoudensgrootte_32']]
 
     id_vars = ['ID',
            'WijkenEnBuurten',
@@ -77,7 +78,8 @@ def load_data():
            'GemiddeldElektriciteitsverbruikTotaal_47',
            'Bevolkingsdichtheid_33',
            'GemiddeldeWOZWaardeVanWoningen_35',
-          'HuishoudensTotaal_28'] 
+          'HuishoudensTotaal_28',
+            'GemiddeldeHuishoudensgrootte_32'] 
     value_vars = ['Appartement_48', 'Tussenwoning_49', 'Hoekwoning_50', 'TweeOnderEenKapWoning_51', 'VrijstaandeWoning_52', 'Huurwoning_53', 'EigenWoning_54']
 
     amsterdam_e_mvr = pd.melt(amsterdam_e, id_vars=id_vars, value_vars=value_vars, var_name='Type_woning', value_name='Count')
@@ -100,7 +102,8 @@ def load_data():
                                  'VrijstaandeWoning_60',
                                  'Huurwoning_61',
                                  'EigenWoning_62',
-                                'HuishoudensTotaal_28']]
+                                'HuishoudensTotaal_28',
+                                    'GemiddeldeHuishoudensgrootte_32']]
 
     id_vars = ['ID',
            'WijkenEnBuurten',
@@ -110,7 +113,8 @@ def load_data():
            'GemiddeldAardgasverbruikTotaal_55',
            'Bevolkingsdichtheid_33',
            'GemiddeldeWOZWaardeVanWoningen_35',
-          'HuishoudensTotaal_28'] 
+          'HuishoudensTotaal_28',
+              'GemiddeldeHuishoudensgrootte_32'] 
     value_vars = ['Appartement_56', 'Tussenwoning_57', 'Hoekwoning_58', 'TweeOnderEenKapWoning_59', 'VrijstaandeWoning_60', 'Huurwoning_61', 'EigenWoning_62']
 
     amsterdam_g_mvr = pd.melt(amsterdam_g, id_vars=id_vars, value_vars=value_vars, var_name='Type_woning', value_name='Count')
@@ -357,12 +361,11 @@ if page == 'Elektriciteitsverbruik Analyse':
             st.pyplot(fig)
 
         if keuze == 'huishoudengrootte':
-            amsterdam_e_mvr_12 = amsterdam_e_mvr_1[amsterdam_e_mvr_1['HuishoudensTotaal_28']<100000]
             fig, ax = plt.subplots()
-            sns.residplot(data=amsterdam_e_mvr_12, x="GemiddeldElektriciteitsverbruikTotaal_47", y="HuishoudensTotaal_28", ax=ax)
+            sns.residplot(data=amsterdam_e_mvr_12, x="GemiddeldElektriciteitsverbruikTotaal_47", y="GemiddeldeHuishoudensgrootte_32", ax=ax)
             plt.title('Residuenplot')
             plt.xlabel('Gemiddelde elektriciteitsverbruik')
-            plt.ylabel('Huishoudensgrootte')
+            plt.ylabel('Gemiddelde Huishoudensgrootte')
 
             st.pyplot(fig)
         st.subheader("")
@@ -370,7 +373,7 @@ if page == 'Elektriciteitsverbruik Analyse':
                 # Define the independent variables (features) for MLR
         X = amsterdam_e_mvr_1[['Bevolkingsdichtheid_33',
                 'GemiddeldeWOZWaardeVanWoningen_35',
-                'HuishoudensTotaal_28']]  # Add more columns as needed
+                'GemiddeldeHuishoudensgrootte_32']]  
 
         # Add a constant (intercept) to the independent variables
         X = sm.add_constant(X)
