@@ -362,7 +362,7 @@ if page == 'Elektriciteitsverbruik Analyse':
 
         if keuze == 'huishoudengrootte':
             fig, ax = plt.subplots()
-            sns.residplot(data=amsterdam_e_mvr_12, x="GemiddeldElektriciteitsverbruikTotaal_47", y="GemiddeldeHuishoudensgrootte_32", ax=ax)
+            sns.residplot(data=amsterdam_e_mvr_1, x="GemiddeldElektriciteitsverbruikTotaal_47", y="GemiddeldeHuishoudensgrootte_32", ax=ax)
             plt.title('Residuenplot')
             plt.xlabel('Gemiddelde elektriciteitsverbruik')
             plt.ylabel('Gemiddelde Huishoudensgrootte')
