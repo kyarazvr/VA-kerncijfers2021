@@ -10,4 +10,6 @@ folium==0.12.1
 streamlit==1.11.0
 streamlit-folium==0.5.0
 scikit-learn==0.24.2
+SciPy=>= 1.4
+Patsy >= 0.5.2
 statsmodels==0.13.0
